@@ -17,7 +17,7 @@ def hackAffine(message):
             continue
         keyB = key % 34
 
-        decryptedText = afin.decode(message, keyA, keyB)
+        decryptedText = afin.decript(message, keyA, keyB)
         if detectEnglish.isEnglish(decryptedText):
             # Check with the user if the decrypted key has been found.
             print('Possible encryption hack:')

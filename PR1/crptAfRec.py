@@ -19,7 +19,7 @@ def hackAffine(message):
             keyB2 = key2 % 34
             if cryptomath.egcd(keyA1, 34)[0] == 1 and cryptomath.egcd(keyA2, 34)[0] == 1 and \
                     cryptomath.egcd(keyA1, keyA2)[0] == 1:
-                decryptedText = afinrecur.decode(message, keyA1, keyA2, keyB1, keyB2)
+                decryptedText = afinrecur.decript(message, keyA1, keyA2, keyB1, keyB2)
                 if detectEnglish.isEnglish(decryptedText):
                     print('Possible encryption hack:')
                     print('Key pair A1: {} A2: {} B1: {} B2: {}'.format(keyA1, keyA2, keyB1, keyB2))

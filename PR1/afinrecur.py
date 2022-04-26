@@ -32,7 +32,7 @@ def gcd(x: int, y=34):
     return s
 
 
-def decode(p: str, k11: int, k12: int, k21: int, k22: int):
+def decript(p: str, k11: int, k12: int, k21: int, k22: int):
     alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,() "
     c1 = ""
     ii = 0
@@ -73,7 +73,7 @@ def main():
     messaged = input("Сообщение для дешифрования: ").upper()
     k11, k12 = [int(i) for i in input("Первая пара ключей k11 k12: ").split()]
     k21, k22 = [int(i) for i in input("Вторая пара ключей k21 k22: ").split()]
-    print(decode(messaged, k11, k12, k21, k22))
+    print(decript(messaged, k11, k12, k21, k22))
 
 
 if __name__ == '__main__':
