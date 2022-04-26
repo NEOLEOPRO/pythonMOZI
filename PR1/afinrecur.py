@@ -1,18 +1,18 @@
 def affine(p: str, k11: int, k12: int, k21: int, k22: int):
-    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,():"
+    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ !?.,():"
     c = ""
     ii = 0
     if gcd(k11) != 1:
-        print("Warning: k11 первой пары не взаимно простой с 67, дешифрование с данным ключём не получится")
+        print("Warning: k11 первой пары не взаимно простой с 34, дешифрование с данным ключём не получится")
     if gcd(k21) != 1:
-        print("Warning: k21 второй пары не взаимно простой с 67, дешифрование с данным ключём не получится")
+        print("Warning: k21 второй пары не взаимно простой с 34, дешифрование с данным ключём не получится")
     for i in p:
         if i in alf:
             if ii == 0:
-                c += alf[(alf.find(i) * k11 + k12) % 67]
+                c += alf[(alf.find(i) * k11 + k12) % 34]
                 ii += 1
                 continue
-            c += alf[(alf.find(i) * k21 + k22) % 67]
+            c += alf[(alf.find(i) * k21 + k22) % 34]
             k11, k21 = k21, k11 * k21
             k12, k22 = k22, k12 + k22
         else:
@@ -20,7 +20,8 @@ def affine(p: str, k11: int, k12: int, k21: int, k22: int):
     return c
 
 
-def gcd(x: int, y=67):
+def gcd(x: int, y=34):
+    s = 1
     if x > y:
         temp = y
     else:
@@ -32,28 +33,30 @@ def gcd(x: int, y=67):
 
 
 def decode(p: str, k11: int, k12: int, k21: int, k22: int):
-    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,() "
+    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,() "
     c1 = ""
     ii = 0
+    k11_re = 1
+    k21_re = 1
     if gcd(k11) != 1:
-        return "Error: k11 первой пары не взаимно простой с 67"
+        return "Error: k11 первой пары не взаимно простой с 34"
     if gcd(k21) != 1:
-        return "Error: k21 второй пары не взаимно простой с 67"
+        return "Error: k21 второй пары не взаимно простой с 34"
     for i in p:
         if i in alf:
-            for a in range(67):
-                if (k11 * a) % 67 == 1:
+            for a in range(34):
+                if (k11 * a) % 34 == 1:
                     k11_re = a
                     break
-            for b in range(67):
-                if (k21 * b) % 67 == 1:
+            for b in range(34):
+                if (k21 * b) % 34 == 1:
                     k21_re = b
                     break
             if ii == 0:
-                c1 += alf[((alf.find(i) - k12) * k11_re) % 67]
+                c1 += alf[((alf.find(i) - k12) * k11_re) % 34]
                 ii += 1
                 continue
-            c1 += alf[((alf.find(i) - k22) * k21_re) % 67]
+            c1 += alf[((alf.find(i) - k22) * k21_re) % 34]
             k11, k21 = k21, k11 * k21
             k12, k22 = k22, k12 + k22
         else:

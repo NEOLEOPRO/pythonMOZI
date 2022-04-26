@@ -1,11 +1,11 @@
 def affine(p: str, k1: int, k2: int):
-    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,():"
+    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ !?.,():"
     c = ""
     alfz = ""
     if gcd(k1) != 1:
-        print("Warn: k1 не взаимно простое с 67, дешифрование с данным ключём не получится")
+        print("Warn: k1 не взаимно простое с 34, дешифрование с данным ключём не получится")
     for i in alf:
-        alfz += alf[(alf.find(i) * k1 + k2) % 67]
+        alfz += alf[(alf.find(i) * k1 + k2) % 34]
     for i in p:
         if i in alf:
             c += alfz[alf.find(i)]
@@ -14,7 +14,8 @@ def affine(p: str, k1: int, k2: int):
     return c
 
 
-def gcd(x: int, y=67):
+def gcd(x: int, y=34):
+    s = 0
     if x > y:
         temp = y
     else:
@@ -26,17 +27,18 @@ def gcd(x: int, y=67):
 
 
 def decode(p: str, k1: int, k2: int):
-    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,():"
+    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ !?.,():"
     c1 = ""
     alfz = ""
+    k1_re = 0
     if gcd(k1) != 1:
-        return "Error: k1 не взаимно простое с 67"
-    for i in range(67):
-        if (k1 * i) % 67 == 1:
+        return "Error: k1 не взаимно простое с 34"
+    for i in range(34):
+        if (k1 * i) % 34 == 1:
             k1_re = i
             break
     for i in alf:
-        alfz += alf[((alf.find(i) - k2) * k1_re) % 67]
+        alfz += alf[((alf.find(i) - k2) * k1_re) % 34]
     for i in p:
         if i in alf:
             c1 += alfz[alf.find(i)]

@@ -1,11 +1,11 @@
 def cezar(message, smeshenie):
-    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?.,():"
+    alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ !?.,():"
     itog = ''
     for i in message:
         mesto = alf.find(i)
         new_mesto = mesto + smeshenie
         if i in alf:
-            itog += alf[new_mesto % 67]
+            itog += alf[new_mesto % 34]
         else:
             itog += i
     return itog
