@@ -1,6 +1,4 @@
 import math
-
-from matplotlib import pyplot
 from string import ascii_lowercase
 from collections import Counter
 
@@ -18,7 +16,7 @@ LETTERS_X = list(ascii_lowercase)
 
 def cipher(text: str, key: int, decrypt: bool) -> str:
     output = ''
-
+    text = text.lower()
     for char in text:
         # If the character is not in the english alphabet don't change it.
         if char not in ALPHABET:
@@ -34,26 +32,7 @@ def cipher(text: str, key: int, decrypt: bool) -> str:
 
         # Setting the right case for the letter and adding it to the output
         output += new_char.upper() if char.isupper() else new_char
-
     return output
-
-
-def illustrate(plain_text: str, cipher_text: str):
-    def construct_y_axis(text: str) -> list[float]:
-        counter = Counter(text)
-        return [counter.get(letter, 0) * 100 / len(text) for letter in ALPHABET]
-
-    pyplot.style.use(GRAPH_STYLE)
-
-    fig, axs = pyplot.subplots(2)
-    fig.suptitle('Letter Frequency Before And After Encryption (Before on the top)')
-
-    for axis in axs:
-        axis.set_xlabel('Letters')
-        axis.set_ylabel('Percentage %')
-    axs[0].bar(LETTERS_X, construct_y_axis(plain_text))
-    axs[1].bar(LETTERS_X, construct_y_axis(cipher_text))
-    pyplot.show()
 
 
 def difference(text: str) -> float:
@@ -75,3 +54,9 @@ def break_cipher(cipher_text: str) -> int:
             encryption_key = key
 
     return encryption_key
+
+encrtext = cipher("MORE THEN ONE BOOK WE NEED TO READ", 12, False)
+print('Possible encryption hack:')
+print('Key pair A: {}'.format(break_cipher(encrtext)))
+print('Decrypted message:')
+print(cipher(encrtext, break_cipher(encrtext), True))
