@@ -36,7 +36,7 @@ def vig_decoder2(phrase, alph, key):
     return ans
 
 
-def vig_encoder3(phrase, alph, key): # шифр Виженера с самоключом по шифртексту
+def vig_encoder3(phrase, alph, key):
     """Зашифрование с помощью шифра шифр Виженера с самоключом по шифртексту"""
     ans = ''
     for i in phrase:
