@@ -1,6 +1,5 @@
 import random
 from random import randint
-from math import sqrt
 
 
 def get_binary_map(k):
@@ -209,35 +208,7 @@ def p_4(numbers, d, n):
     return message
 
 
-def p_5(numbers, e, n):
-    print("Известные данные:")
-    print("Открытый ключ зашифрования: (" + str(e) + ", " + str(n) + ")")
-    print("Зашифрованное сообщение:")
-    print(numbers)
-    A = round(sqrt(n))
-    print("Начальное A = sqrt(n):", A)
-    B = round(sqrt(A ** 2 - n))
-    while B != sqrt(A ** 2 - n):
-        A += 1
-        B = round(sqrt(A ** 2 - n))
-    print("Результат подбора:")
-    print("A =", A, "B =", B)
-    p = A - B
-    q = A + B
-    print("p =", p, "q =", q)
-    f = (p - 1) * (q - 1)
-    d = reciprocal_number(e, f)
-    print("Полученный ключ расшифрования: (" + str(d) + ", " + str(n) + ")")
-    m = [pow(i, d, n) for i in c]
-    m = [to_sym[i] for i in m]
-    message = "".join(m)
-    print("Расшифрованнное сообщение:")
-    print(message)
-    input("нажмине Enter чтобы продолжить")
-    return message
-
-
-def p_6(numbers, e, d, n):
+def p_5(numbers, e, d, n):
     print("Известные данные:")
     print("Открытый ключ зашифрования: (" + str(e) + ", " + str(n) + ")")
     print("Зашифрованное сообщение:")
@@ -279,8 +250,7 @@ if __name__ == "__main__":
         print("2. Ввод ключей")
         print("3. Зашифровка сообщения")
         print("4. Расшифровка сообщения")
-        print("5. Атака Фурье")
-        print("6. Атака схемы с нотариусом")
+        print("5. Атака схемы с нотариусом")
         print("Введите номер пункта")
         print("Для выхода введите 0")
         num = input()
@@ -301,11 +271,6 @@ if __name__ == "__main__":
         if num == "5":
             if c != "":
                 m2 = p_5(c, e, n)
-            else:
-                print("Для проведения атаки Фурье зашифруйте сообщение")
-        if num == "6":
-            if c != "":
-                m3 = p_6(c, e, d, n)
             else:
                 print("Для проведения атаки схемы с нотариусом зашифруйте сообщение")
         if num == "0":
