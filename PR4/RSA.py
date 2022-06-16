@@ -168,8 +168,8 @@ def p_1():
         e, d, n = generate_keys()
         print("Текущие ключи:")
         print("Зашифрования: e=" + str(e) + ",\nn=" + str(n) + ")")
-        print("Расшифрования: e=" + str(d) + ",\nn=" + str(n) + ")")
-        text = input()
+        print("Расшифрования: d=" + str(d) + ",\nn=" + str(n) + ")")
+        text = input("Использовать данные ключи? y / n")
     return e, d, n
 
 
