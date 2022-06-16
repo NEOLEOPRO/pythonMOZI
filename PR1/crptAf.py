@@ -1,4 +1,5 @@
-import afin, detectEnglish, cryptomath
+import afin, cryptomath
+from PR3 import detectEnglish
 
 
 def main():

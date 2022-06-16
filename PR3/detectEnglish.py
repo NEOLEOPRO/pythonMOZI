@@ -12,7 +12,7 @@ UPPERLETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \t\n'
 
 def loadDictionary():
-    dictionaryFile = open('dictionary.txt')
+    dictionaryFile = open('../PR1/dictionary.txt')
     Words = {}
     for word in dictionaryFile.read().split('\n'):
         Words[word] = None
