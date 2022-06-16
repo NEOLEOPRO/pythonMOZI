@@ -146,7 +146,7 @@ def generate_keys():
     e = get_coprime(random.getrandbits(100), random.getrandbits(1000), f)
     d = reciprocal_number(e, f)
     n = p * q
-    print("p:", p, "q:", q)
+    print("p:", p, '\n', "q:", q)
     return e, d, n
 
 
